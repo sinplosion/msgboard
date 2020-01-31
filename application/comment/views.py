@@ -1,6 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.comment.models import Comment
+from application.comment.forms import CommentForm
 
 
 @app.route("/comment", methods=["GET"])
@@ -9,13 +10,19 @@ def comment_index():
 
 @app.route("/comment/new/")
 def comment_form():
-    return render_template("comment/new.html")
+    return render_template("comment/new.html", form = CommentForm())
 
 @app.route("/comment/", methods=["POST"])
 def comment_create():
-    t = Comment(request.form.get("name"))
 
-    db.session().add(t)
+    form = CommentForm(request.form)
+
+    if not form.validate():
+        return render_template("comment/new.html", form = form)
+
+    c = Comment(form.comment.data)
+
+    db.session().add(c)
     db.session().commit()
   
     return redirect(url_for("comment_index"))
