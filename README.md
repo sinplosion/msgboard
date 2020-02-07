@@ -17,6 +17,9 @@ Test accounts: (every new user gets the role 'USER')
 |admin          |admin          |ADMIN      |
 |user           | user          |USER       |
 
+
+the heroku index page has a query that for some reason doesn't work on heroku but works on linux
+
 #### User stories
 
 User

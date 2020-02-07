@@ -8,7 +8,7 @@ from application.auth.models import User
 
 @app.route("/comment", methods=["GET"])
 def comment_index():
-    return render_template("comment/list.html")
+    return render_template("comment/list.html", comment=Comment.query.all())
 
 @app.route("/comment/new/")
 @login_required
