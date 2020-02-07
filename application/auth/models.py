@@ -34,7 +34,7 @@ class User(Base):
 
     @staticmethod
     def comment_count():
-        stmt = text("SELECT Account.name, COUNT(Comment.account_id) FROM account "
+        stmt = text("SELECT name, COUNT(Comment.account_id) FROM account "
                 "LEFT JOIN Comment ON account.id = Comment.account_id")
         res = db.engine.execute(stmt)
         response = []
@@ -42,7 +42,7 @@ class User(Base):
             response.append({"name":row[0], "amount":row[1]})
 
         return response
-        
+
 class Role(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
