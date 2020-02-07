@@ -1,23 +1,36 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Comment</th>
-      <th>Created</th>
-      <th>Edited</th>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>
+<table>
+  <tr>
+    <th>Comment</th>
+    <th>Created</th>
+    <th>Edited</th>
 
-    </tr>
-    {% for comment in comment %}
-    <tr>
-      <td>{{ comment.content }}</td>
-      <td>{{ comment.created }}</td>
-      <td>{{ comment.edited }}</td>
-      <td><form method="POST" action="{{ url_for('comment_delete', comment_id=comment.id) }}">
-        <input type="submit" value="delete"/>
+  </tr>
+  {% for comment in comment %}
+  <tr>
+    <td>{{ comment.content }}</td>
+    <td>{{ comment.created }}</td>
+    <td>{{ comment.edited }}</td>
+    <td>
+      <form method="POST" action="{{ url_for('comment_edit', comment_id=comment.id) }}">
+        <input type="submit" value="edit" />
       </form>
     </td>
-    </tr>
-    {% endfor %}
-  </table>
+    <td>
+      <form method="POST" action="{{ url_for('comment_delete', comment_id=comment.id) }}">
+        <input type="submit" value="delete" />
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}
