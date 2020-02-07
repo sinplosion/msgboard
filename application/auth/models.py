@@ -1,6 +1,7 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
 
 class User(Base):
 
@@ -31,6 +32,17 @@ class User(Base):
         return True
 
 
+    @staticmethod
+    def comment_count():
+        stmt = text("SELECT account.name, COUNT( comment.account_id) FROM account "
+                "LEFT JOIN Comment ON account.id = Comment.account_id")
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"name":row[0], "amount":row[1]})
+
+        return response
+
 class Role(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -42,3 +54,7 @@ class Role(db.Model):
 
     def __repr__(self):
         return self.name
+
+
+
+

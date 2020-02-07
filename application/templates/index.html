@@ -1,7 +1,36 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>
   <p>
     Hello world!
   </p>
+
+  <ul>
+
+    {% if comment_count is defined %}
+    <table>
+      <tr>
+        <th>Username</th>
+        <th>Post count</th>
+      </tr>
+  
+  
+      {% for user in comment_count %}
+      <td>{{user.name}}</td>
+      <td>{{user.amount}}</td>
+      {% endfor %}
+  
+  
+      {% endif %}
+  
+    </table>
+  </ul>
+
 {% endblock %}
