@@ -9,6 +9,14 @@ All the threads are listed on the front page by activity. First one being the on
 
 [Heroku](https://msgboard-tsoha.herokuapp.com/comment)
 
+
+Test accounts: (every new user gets the role 'USER')
+
+|**Username**   |**Password**   |**Role**   |
+|---------------|---------------|-----------|
+|admin          |admin          |ADMIN      |
+|user           | user          |USER       |
+
 #### User stories
 
 User
