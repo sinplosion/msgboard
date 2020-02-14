@@ -20,6 +20,20 @@ Test accounts: (every new user gets the role 'USER')
 
 the heroku index page has a query that for some reason doesn't work on heroku but works on linux
 
+
+#### Installing on linux
+
+Commands to run on terminal:
+```$ git clone https://github.com/sinplosion/msgboard.git
+$ cd msgboard/
+~/msgboard$ python3 -m venv venv
+~/msgboard$ source venv/bin/activate
+~/msgboard$ pip install -r requirements.txt
+~/msgboard$ python run.py
+```
+After running the 'run.py' the application will run in [http://localhost:5000](http://localhost:5000) alternative link for localhost is also [127.0.0.1:5000](http://127.0.0.1:5000)
+
+
 #### User stories
 
 User
