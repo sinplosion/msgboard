@@ -14,6 +14,8 @@ class User(Base):
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     role = db.relationship("Role")
 
+    threads = db.relationship("Thread", backref='account', lazy=True)
+
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
