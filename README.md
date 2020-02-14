@@ -18,7 +18,7 @@ Test accounts: (every new user gets the role 'USER')
 |user           | user          |USER       |
 
 
-the heroku index page has a query that for some reason doesn't work on heroku but works on linux. please note that when logging in heroku sends you to the index page, which as of now gives an error.
+The heroku index page has a query that for some reason doesn't work on heroku but works on linux. Please note that when logging in the application sends you to the index page, which as of now gives an error.
 
 
 #### Installing on linux
