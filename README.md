@@ -24,7 +24,8 @@ the heroku index page has a query that for some reason doesn't work on heroku bu
 #### Installing on linux
 
 Commands to run on terminal:
-```$ git clone https://github.com/sinplosion/msgboard.git
+```
+$ git clone https://github.com/sinplosion/msgboard.git
 $ cd msgboard/
 ~/msgboard$ python3 -m venv venv
 ~/msgboard$ source venv/bin/activate
