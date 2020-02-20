@@ -37,7 +37,8 @@ class User(Base):
     @staticmethod
     def comment_count():
         stmt = text("SELECT name, COUNT(Comment.account_id) FROM account "
-                "LEFT JOIN Comment ON account.id = Comment.account_id")
+                "LEFT JOIN Comment ON account.id = Comment.account_id "
+                "GROUP BY account.id")
         res = db.engine.execute(stmt)
         response = []
         for row in res:
