@@ -2,7 +2,8 @@ from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
 from application import app, db
-from application.auth.models import User, Role
+from application.auth.models import User
+from application.role.models import Role
 from application.auth.forms import LoginForm, SignupForm
 
 @app.route("/auth/login", methods = ["GET", "POST"])

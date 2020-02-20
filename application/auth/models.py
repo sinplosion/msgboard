@@ -1,6 +1,6 @@
 from application import db
 from application.models import Base
-
+from application.role import models
 from sqlalchemy.sql import text
 
 class User(Base):
@@ -45,18 +45,6 @@ class User(Base):
             response.append({"name":row[0], "amount":row[1]})
 
         return response
-
-class Role(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(10), nullable=False)
-
-
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return self.name
 
 
 

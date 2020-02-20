@@ -28,6 +28,8 @@ from application.auth import views
 from application.thread import models
 from application.thread import views
 
+from application.role import models
+
 #login handing
 from application.auth.models import User
 from os import urandom

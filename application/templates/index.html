@@ -8,29 +8,31 @@
     border: 1px solid black;
   }
 </style>
-  <p>
-    Welcome to the MSGboard!
-  </p>
+<p>
+  Welcome to the MSGboard!
+</p>
 
-  <ul>
+<ul>
 
-    {% if comment_count is defined %}
-    <table>
-      <tr>
-        <th>Username</th>
-        <th>Post count</th>
-      </tr>
-  
-  
-      {% for user in comment_count %}
+  {% if comment_count is defined %}
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Post count</th>
+    </tr>
+
+
+    {% for user in comment_count %}
+    <tr>
       <td>{{user.name}}</td>
       <td>{{user.amount}}</td>
-      {% endfor %}
-  
-  
-      {% endif %}
-  
-    </table>
-  </ul>
+    </tr>
+    {% endfor %}
+
+
+    {% endif %}
+
+  </table>
+</ul>
 
 {% endblock %}
