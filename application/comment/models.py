@@ -11,6 +11,8 @@ class Comment(db.Model):
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
         nullable=False)
 
+    thread_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+        nullable=False)
 
     def __init__(self, content):
         self.content = content
