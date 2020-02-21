@@ -24,7 +24,7 @@ def thread_create():
     if not threadform.validate():
         return render_template("thread/new.html", form = threadform)
 
-    t = Thread(title=threadform.title.data)
+    t = Thread(title=threadform.title.data, content=threadform.content.data)
     t.account_id = current_user.id
 
     db.session().add(t)
