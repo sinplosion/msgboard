@@ -46,6 +46,12 @@ class User(Base):
 
         return response
 
+    @staticmethod
+    def get_username(accountsid):   
+
+        stmt = text("SELECT username FROM account WHERE account.id = :accountsid;").params(accountsid=accountsid)
+        response = db.engine.execute(stmt)
+        return response
 
 
 

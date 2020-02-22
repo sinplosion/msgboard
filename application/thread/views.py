@@ -10,7 +10,7 @@ from application.comment.forms import CommentForm
 @app.route("/thread/new/")
 @login_required
 def thread_form():
-    return render_template("thread/new.html", form = ThreadForm())
+    return render_template("thread/new.html", form = ThreadForm(),get_username = get_username())
 
 @app.route("/thread/", methods=["POST"])
 @login_required

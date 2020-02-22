@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+</style>
+<table>
+  <tr>
+    <th>Thread</th>
+    <th>Created</th>
+    <th>Account ID</th>
+  </tr>
+  {% for thread in thread %}
+  <tr>
+    <td>{{ thread.title }}</td>
+    <td>{{ thread.created }}</td>
+    <td>{{ thread.account_id}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
