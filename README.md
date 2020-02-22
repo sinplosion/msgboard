@@ -48,13 +48,78 @@ User
 * User can edit their comments.
 * User can delete their comments.
 
+Moderator
+
+* Moderator can do everything an User can aside from creating their account.
+* Moderator can edit other Users comments and threads.
+* Moderator can delete other Users comments and threads.
+
 Admin
 
-* Admin can do everything an User can aside from creating their account.
-* Admin can edit other Users comments and threads.
-* Admin can delete other Users comments and threads.
+* Admin can do everything a Moderator can.
 * Admin can delete other Users accounts.
+* Admin can grant and remove Moderator role from Users.
 
+
+#### Restrictions & Missing functionalities
+
+* Commenting doesn't work. It requires to be attatched to a thread, but on creation it's missing the attatchement to the thread.
+* User cannot edit their threads
+* User cannot delete their threads
+* All admin functionalities are missing
+* All moderator functionalities are missing
+
+
+
+#### SQL
+
+```
+CREATE TABLE role (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(10) NOT NULL, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE account (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	name VARCHAR(144) NOT NULL, 
+	username VARCHAR(144) NOT NULL, 
+	password VARCHAR(144) NOT NULL, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE user_role (
+	account_id INTEGER NOT NULL, 
+	role_id INTEGER NOT NULL, 
+	PRIMARY KEY (account_id, role_id), 
+	FOREIGN KEY(account_id) REFERENCES account (id), 
+	FOREIGN KEY(role_id) REFERENCES role (id)
+);
+CREATE TABLE comment (
+	id INTEGER NOT NULL, 
+	created DATETIME, 
+	edited DATETIME, 
+	content VARCHAR(8192) NOT NULL, 
+	account_id INTEGER NOT NULL, 
+	thread_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(account_id) REFERENCES account (id), 
+	FOREIGN KEY(thread_id) REFERENCES account (id)
+);
+CREATE TABLE thread (
+	id INTEGER NOT NULL, 
+	date_created DATETIME, 
+	date_modified DATETIME, 
+	title VARCHAR(144) NOT NULL, 
+	content VARCHAR(8192) NOT NULL, 
+	created DATETIME, 
+	account_id INTEGER NOT NULL, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(account_id) REFERENCES account (id)
+);
+```
 
 #### Initial plan for database:
 ![database diagram](https://github.com/sinplosion/msgboard/blob/master/documentation/database_diagram.jpg)
