@@ -4,14 +4,6 @@ from sqlalchemy import event, DDL
 
 class Role(Base):
     name = db.Column(db.String(10), nullable=False)
-
-class UserRole(Base):
-    account_id = db.Column(db.Integer,db.ForeignKey('account.id'))
-    role_id = db.Column(db.Integer,db.ForeignKey('role.id'), nullable=False)
-    account = db.relationship('Account', backref='account_role')
-    role = db.relationship('Role', backref='role_account')
-
-
     
 event.listen(Role.__table__,'after_create',
             DDL(""" INSERT INTO Role (name) VALUES ('USER'), ('MOD'), ('ADMIN') """))

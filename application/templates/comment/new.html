@@ -1,7 +1,5 @@
-{% extends "layout.html" %}
-
 {% block body %}
-<form method="POST" action="{{ url_for('comment_create') }}">
+<form method="POST" action="{{ url_for('comment_create, thread_id=id') }}">
   <table>
     <tr>
       <td>

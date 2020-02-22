@@ -43,8 +43,10 @@ def auth_signup():
         return render_template("auth/signupform.html", form=SignupForm())
 
 
-    u = User(form.name.data, form.username.data, form.password.data)
-    u.role = Role.query.filter_by(name="USER").first()
+    basicrole = Role.query.filter_by(name="USER").first()
+
+    u = User(name=form.name.data, username=form.username.data, password=form.password.data)
+    u.role = [basicrole]
 
     db.session().add(u)
     db.session().commit()

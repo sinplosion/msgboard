@@ -16,7 +16,7 @@
   </tr>
   {% for thread in thread %}
   <tr>
-    <td>{{ thread.title }}</td>
+    <td><a href={{ url_for('thread_show', thread_id=thread.id) }}>{{ thread.title }}</a></td>
     <td>{{ thread.created }}</td>
     <td>{{ thread.account_id}}</td>
   </tr>

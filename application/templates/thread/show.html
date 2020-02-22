@@ -8,18 +8,36 @@
     border: 1px solid black;
   }
 </style>
+<h1>{{ thread.title }}</h1>
+<th>{{ thread.content }}</th>
 <table>
   <tr>
-    <th>Thread</th>
-    <th>Created</th>
-    <th>Account ID</th>
+    <th>Comment</th>
   </tr>
-  {% for thread in thread %}
+  {% for comment in thread.comment %}
   <tr>
-    <td>{{ thread.title }}</td>
-    <td>{{ thread.created }}</td>
-    <td>{{ thread.account_id}}</td>
+
+    <td>{{ comment.content }}</td>
   </tr>
   {% endfor %}
+
 </table>
+<form method="POST" action="{{ url_for('comment_create', thread_id=thread.id) }}"> <!--comment_create() missing 1 required positional argument: 'thread_id'-->
+  <tr>
+    <td>
+      {{ form.comment.label }}
+    </td>
+    <td>
+      {{ form.comment }}
+    </td>
+    <td>
+      <p>url_for('comment_create', thread_id=thread.id)</p>
+      <p>comment_create() missing 1 required positional argument: 'thread_id'</p>
+  <tr>
+    <td colspan="2">
+      <input type="submit" value="Comment" />
+    </td>
+  </tr>
+  </tr>
+</form>
 {% endblock %}

@@ -17,14 +17,15 @@ def comment_form():
 
 @app.route("/comment/", methods=["POST"])
 @login_required
-def comment_create():
+def comment_create(thread_id):
 
     form = CommentForm(request.form)
 
     if not form.validate():
         return render_template("comment/new.html", form = form)
 
-    c = Comment(form.comment.data)
+    c = Comment(content=form.comment.data)
+    c.thread_id = thread_id
     c.account_id = current_user.id
 
     db.session().add(c)

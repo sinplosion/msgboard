@@ -10,16 +10,13 @@ from application.comment.forms import CommentForm
 @app.route("/thread/new/")
 @login_required
 def thread_form():
-    return render_template("thread/new.html", form = ThreadForm(),get_username = get_username())
+    return render_template("thread/new.html", form = ThreadForm())
 
 @app.route("/thread/", methods=["POST"])
 @login_required
 def thread_create():
 
     threadform = ThreadForm(request.form)
-    
-
-    #add a comment form and add a validation for the first comment to be != null
 
     if not threadform.validate():
         return render_template("thread/new.html", form = threadform)
@@ -35,3 +32,13 @@ def thread_create():
 @app.route("/thread", methods=["GET"])
 def thread_index():
     return render_template("thread/list.html", thread=Thread.query.all())
+
+@app.route("/thread/show/<thread_id>", methods=["GET","POST"])
+@login_required
+def thread_show(thread_id):
+    form = CommentForm(request.form)
+    thread = Thread.query.get(thread_id)
+
+    return render_template("thread/show.html", form = form, thread = thread)
+
+

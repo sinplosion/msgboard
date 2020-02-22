@@ -3,6 +3,15 @@ from application.models import Base
 from application.role import models
 from sqlalchemy.sql import text
 
+
+roles = db.Table('user_role',
+                   db.Column('account_id', db.Integer,
+                             db.ForeignKey('account.id'), primary_key=True),
+                   db.Column('role_id', db.Integer,
+                             db.ForeignKey('role.id'), primary_key=True)
+                   )
+
+
 class User(Base):
 
     __tablename__ = "account"
@@ -11,8 +20,8 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
     
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
-    role = db.relationship("Role")
+    role = db.relationship('Role', secondary=roles, backref=db.backref(
+        'userroles', lazy='dynamic'))
 
     threads = db.relationship("Thread", backref='account', lazy=True)
 
@@ -46,10 +55,12 @@ class User(Base):
 
         return response
 
+
+
     @staticmethod
     def get_username(accountsid):   
-
-        stmt = text("SELECT username FROM account WHERE account.id = :accountsid;").params(accountsid=accountsid)
+        #figure out how to call this from html {{ }}
+        stmt = text("SELECT username FROM account WHERE account.id = :accountsid;").params(accountsid = accountsid)
         response = db.engine.execute(stmt)
         return response
 
