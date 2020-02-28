@@ -7,7 +7,7 @@ All the threads are listed on the front page by activity. First one being the on
 
 #### Demo
 
-[Heroku](https://msgboard-tsoha.herokuapp.com/comment)
+[Heroku](https://msgboard-tsoha.herokuapp.com/)
 
 
 Test accounts: (every new user gets the role 'USER')
