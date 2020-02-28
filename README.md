@@ -76,20 +76,17 @@ Admin
 ```
 CREATE TABLE role (
 	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
 	name VARCHAR(10) NOT NULL, 
 	PRIMARY KEY (id)
 );
 CREATE TABLE account (
 	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
 	name VARCHAR(144) NOT NULL, 
 	username VARCHAR(144) NOT NULL, 
 	password VARCHAR(144) NOT NULL, 
 	PRIMARY KEY (id)
 );
+
 CREATE TABLE user_role (
 	account_id INTEGER NOT NULL, 
 	role_id INTEGER NOT NULL, 
@@ -110,15 +107,15 @@ CREATE TABLE comment (
 );
 CREATE TABLE thread (
 	id INTEGER NOT NULL, 
-	date_created DATETIME, 
-	date_modified DATETIME, 
 	title VARCHAR(144) NOT NULL, 
 	content VARCHAR(8192) NOT NULL, 
 	created DATETIME, 
+	edited DATETIME, 
 	account_id INTEGER NOT NULL, 
 	PRIMARY KEY (id), 
 	FOREIGN KEY(account_id) REFERENCES account (id)
 );
+
 ```
 
 #### Initial plan for database:
