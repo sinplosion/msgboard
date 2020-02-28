@@ -5,6 +5,10 @@ A basic message board type forum. In the forum users can create accounts with un
 
 All the threads are listed on the front page by activity. First one being the one with the newest comment in the thread. Comments in threads are listed by date. Oldest comment being at the top and newest at the bottom.
 
+### How to use
+
+Register an account from the right side of the top navigation bar and once registered you can log in from there aswell. Once logged in you can view threads from the links on the left side of the navigation bar or start your own thread. Viewing threads works without an account aswell. Commenting can be done by clicking the thread title link. Users can also delete and edit comments and threads with the buttons appearing next to the comments and above the thread in the threads showcasing page.
+
 #### Demo
 
 [Heroku](https://msgboard-tsoha.herokuapp.com/)
@@ -15,7 +19,7 @@ Test accounts: (every new user gets the role 'USER')
 |**Username**   |**Password**   |**Role**   |
 |---------------|---------------|-----------|
 |admin          |admin          |ADMIN      |
-|user           | user          |USER       |
+|user           |user          	|USER       |
 
 
 The heroku index page has a query that for some reason doesn't work on heroku but works on linux. Please note that when logging in the application sends you to the index page, which as of now gives an error.
@@ -63,12 +67,9 @@ Admin
 
 #### Restrictions & Missing functionalities
 
-* Commenting doesn't work. It requires to be attatched to a thread, but on creation it's missing the attatchement to the thread.
-* User cannot edit their threads
-* User cannot delete their threads
+* Editing and deleting doesn't look for the user id and allows anyone logged in to do so to any threads or comments.
 * All admin functionalities are missing
 * All moderator functionalities are missing
-
 
 
 #### SQL
