@@ -14,11 +14,11 @@
     <th>Created</th>
     <th>Account ID</th>
   </tr>
-  {% for thread in thread %}
+  {% for thread in listthreads %}
   <tr>
     <td><a href={{ url_for('thread_show', thread_id=thread.id) }}>{{ thread.title }}</a></td>
     <td>{{ thread.created }}</td>
-    <td>{{ thread.account_id}}</td>
+    <td>{{ thread.username}}</td>
   </tr>
   {% endfor %}
 </table>

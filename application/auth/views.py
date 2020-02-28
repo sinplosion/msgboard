@@ -44,9 +44,8 @@ def auth_signup():
 
 
     basicrole = Role.query.filter_by(name="USER").first()
-
     u = User(name=form.name.data, username=form.username.data, password=form.password.data)
-    u.role = [basicrole]
+    basicrole.accounts.append(u)
 
     db.session().add(u)
     db.session().commit()

@@ -1,0 +1,42 @@
+
+
+{% block body %}
+{% if comment is defined %}
+<style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+  </style>
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Comment</th>
+        <th>Created</th>
+        <th>Last edit</th>
+    </tr>
+    {% for comment in comment %}
+    <tr>
+        <td>{{ comment.username }}</td>
+        <td>{{ comment.comment }}</td>
+        <td>{{ comment.created }}</td>
+        <td>{{ comment.edited }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('comment_edit', comment_id = comment.id) }}">
+                <input type="submit" value="edit">
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="{{ url_for('comment_delete', comment_id = comment.id) }}">
+                <input type="submit" value="delete">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endif %}
+
+{% endblock %}

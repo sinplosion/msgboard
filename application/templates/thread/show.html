@@ -1,43 +1,26 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<style>
-  table,
-  th,
-  td {
-    border: 1px solid black;
-  }
-</style>
-<h1>{{ thread.title }}</h1>
-<th>{{ thread.content }}</th>
-<table>
-  <tr>
-    <th>Comment</th>
-  </tr>
-  {% for comment in thread.comment %}
-  <tr>
+{% for info in threadinfo %}
+<td>
+  <form method="POST" action="{{ url_for('thread_edit', thread_id = info.id) }}">
+      <input type="submit" value="edit">
+  </form>
+</td>
+<td>
+  <form method="POST" action="{{ url_for('thread_delete', thread_id = info.id) }}">
+      <input type="submit" value="delete thread">
+  </form>
+</td>
 
-    <td>{{ comment.content }}</td>
-  </tr>
-  {% endfor %}
 
-</table>
-<form method="POST" action="{{ url_for('comment_create', thread_id=thread.id) }}"> <!--comment_create() missing 1 required positional argument: 'thread_id'-->
-  <tr>
-    <td>
-      {{ form.comment.label }}
-    </td>
-    <td>
-      {{ form.comment }}
-    </td>
-    <td>
-      <p>url_for('comment_create', thread_id=thread.id)</p>
-      <p>comment_create() missing 1 required positional argument: 'thread_id'</p>
-  <tr>
-    <td colspan="2">
-      <input type="submit" value="Comment" />
-    </td>
-  </tr>
-  </tr>
-</form>
+  <p>created: {{ info.created }}</p>
+  <p>edited: {{ info.edited }}</p>
+  <h1>{{ info.title }}</h1>
+  <th>{{ info.content }}</th>
+{% endfor %}
+
+
+{% include '/thread/listComments.html' %}
+{% include '/thread/comment.html' %}
 {% endblock %}

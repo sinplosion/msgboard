@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html>
+<style>
+  ul {
+    list-style-type: none;
+  }
+
+  li {
+    float: right;
+  }
+
+  li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  li a:hover {
+    background-color: #111;
+  }
+
+  .topnav-centered a {
+    float: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
 
 <head>
   <meta charset="utf-8">
@@ -9,31 +37,44 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4"><b>
-      <font color="red">msgBoard</font>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-5">
+    <b>
+      <div class="topnav-centered">
+      <a href="/">
+        <font color="red">msgBoard</font>
+      </a>
+    </div>
+
+      <ul class="navbar-nav">
+
+        <li>
+          <a href="{{ url_for('thread_index') }}">List threads</a>
+        </li>
+        <li>
+          <a href="{{ url_for('thread_form') }}">Make a thread</a>
+        </li>
+      </ul>
+
     </b>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
         {% if current_user.is_authenticated %}
         <li class="nav-item">
-          <font color="red">Logged in as {{ current_user.name }} </font><a href="{{ url_for('auth_logout') }}">Log out</a>
+          <form action="{{ url_for('auth_logout') }}">
+            <font color="red">Logged in as {{ current_user.name }} </font><input type="submit" value="Log out">
+          </form>
         </li>
         {% else %}
-        <li class="nav-item">
-          <a href="{{ url_for('auth_login') }}">Login</a>
-          <a href="{{ url_for('auth_signup') }}">Sign up</a>
-          {% endif %}
-        </li>
+        <form action="{{ url_for('auth_login') }}">
+          <input type="submit" value="Login">
+        </form>
+        <form action="{{ url_for('auth_signup') }}">
+          <input type="submit" value="Sign up">
+        </form>
+        {% endif %}
       </ul>
     </div>
   </nav>
-
-  <ul>
-    <li><a href="{{ url_for('comment_index') }}">List comments</a></li>
-    <li><a href="{{ url_for('comment_form') }}">Make a comment</a></li>
-    <li><a href="{{ url_for('thread_index') }}">List threads</a></li>
-    <li><a href="{{ url_for('thread_form') }}">Make a thread</a></li>
-  </ul>
   {% block body %}
   <p>
 

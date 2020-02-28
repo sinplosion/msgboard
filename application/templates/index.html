@@ -14,11 +14,12 @@
 
 <ul>
 
-  {% if comment_count is defined %}
+  {% if comment_count is defined and comment_count|length > 0  %}
+  <p>Amount of commets by users</p>
   <table>
     <tr>
       <th>Username</th>
-      <th>Post count</th>
+      <th>Comment count</th>
     </tr>
 
 
@@ -31,8 +32,28 @@
 
 
     {% endif %}
+  </table>
+</br></br>
+  {% if thread_count is defined and thread_count|length > 0  %}
+  <p>Number of threads made by user</p>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Amount of threads</th>
+    </tr>
+
+
+    {% for user in thread_count %}
+    <tr>
+      <td>{{user.user}}</td>
+      <td>{{user.threads}}</td>
+    </tr>
+    {% endfor %}
+
+    {% endif %}
 
   </table>
 </ul>
+
 
 {% endblock %}

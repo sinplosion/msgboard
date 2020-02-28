@@ -4,7 +4,7 @@ from application.role import models
 from sqlalchemy.sql import text
 
 
-roles = db.Table('user_role',
+user_role = db.Table('user_role',
                    db.Column('account_id', db.Integer,
                              db.ForeignKey('account.id'), primary_key=True),
                    db.Column('role_id', db.Integer,
@@ -20,8 +20,8 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
     
-    role = db.relationship('Role', secondary=roles, backref=db.backref(
-        'userroles', lazy='dynamic'))
+    role = db.relationship('Role', secondary=user_role, backref=db.backref(
+        'accounts', lazy='dynamic'))
 
     threads = db.relationship("Thread", backref='account', lazy=True)
 
@@ -58,11 +58,15 @@ class User(Base):
 
 
     @staticmethod
-    def get_username(accountsid):   
-        #figure out how to call this from html {{ }}
-        stmt = text("SELECT username FROM account WHERE account.id = :accountsid;").params(accountsid = accountsid)
-        response = db.engine.execute(stmt)
-        return response
+    def thread_count():
+        stmt = text("SELECT name, COUNT(Thread.account_id) FROM account "
+                "INNER JOIN Thread ON account.id = Thread.account_id "
+                "GROUP BY account.id")
+        res = db.engine.execute(stmt)
+        response = []
+        for row in res:
+            response.append({"user":row[0], "threads":row[1]})
 
+        return response
 
 
