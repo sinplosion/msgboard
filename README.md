@@ -119,5 +119,5 @@ CREATE TABLE thread (
 
 ```
 
-#### Initial plan for database:
+#### database diagram:
 ![database diagram](https://github.com/sinplosion/msgboard/blob/master/documentation/database_diagram.png)
